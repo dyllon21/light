@@ -1,0 +1,27 @@
+{
+  "name": "light",
+  "version": "1.0.0",
+  "description": "having fun",
+  "main": "light.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DyllonIsaacs",
+  "license": "MIT",
+  "dependencies": {
+    "johnny-five": "^0.11.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dyllon21/light.git"
+  },
+  "keywords": [
+    "Robotics",
+    "Time"
+  ],
+  "bugs": {
+    "url": "https://github.com/dyllon21/light/issues"
+  },
+  "homepage": "https://github.com/dyllon21/light#readme"
+}
