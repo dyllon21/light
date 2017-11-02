@@ -50,11 +50,10 @@ board.on('ready', function() {
     counter++
     console.log(counter);
     if (counter == 8) {
-      // light.on();
+
       light.on();
       clearInterval(stopBlink);
-      // light.off();
-      // counter++;
+
     } else if (counter == 13) {
       // counter++;
       light.blink_slow();
