@@ -3,9 +3,7 @@ var five = require("johnny-five");
 console.log('waiting for arduino to connect');
 
 // Create an instance of the Board class - referring to the Arduino Micro Controller 'board'
-var board = new five.Board({
-  port: "/dev/ttyACM0"
-});
+var board = new five.Board();
 
 board.on('ready', function() {
   console.log('board ready!');
@@ -23,18 +21,20 @@ board.on('ready', function() {
     }
     this.blink_fast = function() {
       led.blink();
-      setInterval(function() {
-        led.on();
-      }, 90);
+      stopBlink = setInterval(function() {
+        setTimeout(function() {
+          led.on();
+        }, 90);
+      })
     }
     this.blink_slow = function() {
       led.blink();
       setInterval(function() {
         led.on();
-      }, 5000);
+      }, 1000);
       setTimeout(function() {
         led.blink();
-      }, 10000);
+      }, 300);
     }
   }
   var light = new LedLight(7);
@@ -44,23 +44,24 @@ board.on('ready', function() {
   // light.blink_slow();
 
   var counter = 0;
+  var stopBlink;
 
   setInterval(function() {
-    console.log(counter);
     counter++
-    if (counter === light) {
-      // counter++;
+    console.log(counter);
+    if (counter == 8) {
+      // light.on();
       light.on();
-    } else {
+      clearInterval(stopBlink);
+      // light.off();
+      // counter++;
+    } else if (counter == 13) {
+      // counter++;
+      light.blink_slow();
+
+    } else if (counter == 15) {
+      counter = 0
       light.off();
     }
-  }, 1000);
-  // }else if(counter === 5){
-  //   counter++;
-  //   led.blink();
-  // }else if (counter === 7){
-  //   counter++;
-  //   led.off();
-  // }
-
+  }, 500);
 });
